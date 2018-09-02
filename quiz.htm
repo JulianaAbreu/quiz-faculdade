@@ -12,7 +12,7 @@
 </head>
 <body>
 	<aside>
-		<div class="sidebar-thumbnail">
+		<div class="sidebar-thumbnail scale-hover">
 			<img src="./img/stock/category-perfil/movies-category.png" class="category-thumb">
 		</div>
 		<div class="sidebar-menu">
@@ -47,47 +47,71 @@
 				<h1>Filmes</h1>
 			</div>
 			
-			<div class="category-level">
+			<div class="category-level scale-hover">
 				<div id="level-stars">
 					<img src="./img/icons/star-level.svg">
 				</div>
 				<p><strong>Nível</strong><br>Fácil</p>
 			</div>
-			<div class="category-questnum">
+			<div class="category-questnum scale-hover">
 				4 <strong>10</strong>
 			</div>
 		</header>
 
 		<section class="question-wrapper">
 			<div>
-				<img src="./img/icons/nav-arrow.svg" class="nav-arrow arrow-left">
-				<div class="quiz-question">
-					<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?</h2>
-					<div class="option01" id="option01">
-						<span class="option-letter">a</span>
-						<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-					</div>
-					<div class="option02" id="option02">
-						<span class="option-letter">b</span>
-						<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-					</div>
-					<div class="option03" id="option03">
-						<span class="option-letter">c</span>
-						<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-					</div>
-					<div class="option04" id="option04">
-						<span class="option-letter">d</span>
-						<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+				<img src="./img/icons/nav-arrow.svg" class="nav-arrow arrow-left" id="narrow-back">
+				<div style="overflow: hidden; padding: 20px">
+					<div class="quiz-question">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?</h2>
+						<div class="option01" id="option01">
+							<span class="option-letter">a</span>
+							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+						</div>
+						<div class="option02" id="option02">
+							<span class="option-letter">b</span>
+							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+						</div>
+						<div class="option03" id="option03">
+							<span class="option-letter">c</span>
+							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+						</div>
+						<div class="option04" id="option04">
+							<span class="option-letter">d</span>
+							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+						</div>
 					</div>
 				</div>
-				<img src="./img/icons/nav-arrow.svg" class="nav-arrow disabled">
+				<img src="./img/icons/nav-arrow.svg" class="nav-arrow disabled" id="narrow-next">
 			</div>
 		</section>
 	</main>
 	<script>
-		document.querySelector("#option03").addEventListener("click", (evt) => {
-			evt.target.className += " active";
+		// Script APENAS para fins de teste
+
+		let questionArea = document.querySelector(".quiz-question");
+		let classes = questionArea.className;
+		document.querySelector(".nav-arrow").addEventListener("click", () => {
+			questionArea.className += " changeIn changeReverse";
+			setTimeout(() => {
+				questionArea.className = classes;
+				questionArea.className += " changeOut changeReverse";
+				setTimeout(() => {
+					questionArea.className = classes;
+				}, 250);
+			}, 250)
 		})
+
+		document.querySelector("#narrow-next").addEventListener("click", () => {
+			questionArea.className += " changeOut";
+			setTimeout(() => {
+				questionArea.className = classes;
+				questionArea.className += " changeIn";
+				setTimeout(() => {
+					questionArea.className = classes;
+				}, 250);
+			}, 250)
+		});
 	</script>
 </body>
 </html>

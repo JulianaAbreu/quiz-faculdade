@@ -23,7 +23,7 @@ aside {
 
 .sidebar-thumbnail {
     background: #5f2a71;
-    display: flex;
+    display: grid; /* Hack p/ Chrome */
     margin: 30px 0;
     border-radius: 20px;
 }
@@ -143,6 +143,7 @@ header:hover {
 .category-level {
     display: flex;
     align-items: center;
+    cursor: default;
     margin-bottom: 10px; /* ----------- */
 }
 .category-level img {
@@ -203,7 +204,7 @@ header:hover {
     animation: navigation-arrow 2.5s infinite;
 }
 .arrow-left {
-    image-orientation: flip; /* Propriedade Obsoleta */
+    image-orientation: flip; /* Propriedade Obsoleta | Não Funciona no Chrome */
 }
 .disabled {
     opacity: .5;
@@ -215,6 +216,9 @@ header:hover {
     }
 }
 
+.quiz-question {
+    position: relative;
+}
 .quiz-question > h2 {
     color: #307A50;
     text-align: center;
@@ -259,4 +263,31 @@ header:hover {
     border-radius: 12.5px;
     margin-right: 7px;
     vertical-align: middle;
+}
+
+.scale-hover {
+    transition: all 250ms ease;
+}
+.scale-hover:hover {
+    transform: scale(1.1);
+}
+
+@keyframes changeOut {
+    0% { left: 0 }
+    100% { left: -110% }
+}
+@keyframes changeIn {
+    0% { left: 110% }
+    100% { left: 0 }
+}
+
+.changeOut {
+    animation: changeOut 250ms;
+}
+.changeIn {
+    animation: changeIn 250ms;
+}
+
+.changeReverse {
+    animation-direction: reverse;
 }

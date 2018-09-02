@@ -1,8 +1,8 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'PT Sans', sans-serif;
-  font-size: 12pt;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14pt;
 }
 .logo img {
   width: 142px;
@@ -18,6 +18,7 @@
 }
 .align-columns {
   display: flex;
+  align-items: center;
 }
 .wrapper {
   width: 100%;
@@ -53,13 +54,133 @@
 }
 
 .featured {
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 35px;
-  height: 50vh;
+  margin-left: 10%;
 }
 
 .featured > section {
   width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.featured > section > h1 {
+  font-size: 48pt;
+}
+
+.featured > section > p, .featured > section > a {
+  font-size: 18pt; 
+   margin-top: 20px;
+}
+
+#themes {
+  display: flex;
+  justify-content: center;
+  background: #F9F9F9;
+  padding-bottom: 60px;
+}
+
+.category-card {
+  width: 210px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  margin-top: -30px;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.20);
+}
+
+.category-card > div {
+  margin-bottom: 20px;
+}
+
+.category-image {
+  width: 120px;
+}
+
+.question-icon {
+  width: 16px;
+}
+
+.category-title {
+  font-weight: 700;
+  font-size: 18pt;
+  text-transform: uppercase;
+}
+
+.category-amout {
+  color: #808080;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.btn {
+  padding: 10px 60px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.btn-info {
+  padding: 10px 25px;
+}
+
+.btn-primary {
+  padding: 12px 50px;
+}
+
+.btn-green {
+  background-image: linear-gradient(#40E298, #31B1B6);
+}
+
+.btn-yellow {
+  background-image: linear-gradient(#FCE289, #F2817F);
+}
+
+.btn-red {
+  background-image: linear-gradient(#E65A5F, #C52961);
+}
+
+.btn-purple {
+  background-image: linear-gradient(#024495, #610197)
+}
+
+#about {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  height: 60vh;
+}
+
+#about > p {
+  width: 70%;
+  font-size: 16pt;
+  font-weight: 600;
+  color: #808080;
+}
+
+#about > h2 {
+  font-size: 30pt;
+  text-transform: uppercase;
+  color: #707070;
+}
+
+footer {
+  background-color: #F4F4F4;
+  padding: 30px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
 }

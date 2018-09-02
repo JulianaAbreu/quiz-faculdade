@@ -95,9 +95,13 @@ aside {
 /* ------ Conteúdo ------ */
 
 main {
+    width: 100%;
     height: 100vh;
     overflow: hidden;
     background: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
@@ -161,4 +165,57 @@ header {
     font-size: 1rem;
     vertical-align: middle;
     margin: 0 5px 0 2px;
+}
+
+.question-wrapper {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.question-wrapper > div {
+    display: flex;
+    align-items: center;
+    max-width: 850px;
+}
+.nav-arrow {
+    height: 60px;
+    margin: 30px;
+    position: relative;
+    top: 50px;
+}
+.arrow-left {
+    transform: rotate(180deg);
+}
+.disabled {
+    opacity: .5;
+}
+
+.quiz-question > h2 {
+    color: #307A50;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.27rem;
+    line-height: 1.2;
+}
+.quiz-question > div {
+    background: #FFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px #E9E9E9;
+    padding: 15px;
+    color: #367C39;
+    font-size: .95rem;
+    font-weight: bold;
+    margin: 15px 0;
+    cursor: pointer;
+}
+.option-letter {
+    background: #B4DF80;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    border-radius: 12.5px;
+    margin-right: 7px;
+    vertical-align: middle;
 }

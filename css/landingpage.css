@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 14pt;
+  font-size: 13pt;
 }
 .logo img {
   width: 142px;
@@ -103,7 +103,7 @@
 }
 
 .category-image {
-  width: 120px;
+  width: 96px;
 }
 
 .question-icon {
@@ -118,6 +118,7 @@
 
 .category-amout {
   color: #808080;
+  font-size: 12pt;
 }
 
 a {
@@ -125,7 +126,7 @@ a {
   color: #fff;
 }
 .btn {
-  padding: 10px 60px;
+  padding: 10px 75px;
   border-radius: 5px;
   font-weight: 600;
 }
@@ -155,19 +156,19 @@ a {
 }
 
 #about {
-  padding: 40px;
+  padding: 65px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  height: 60vh;
+  height: 300px;
 }
 
 #about > p {
   width: 70%;
   font-size: 16pt;
-  font-weight: 600;
+  font-weight: 400;
   color: #808080;
 }
 

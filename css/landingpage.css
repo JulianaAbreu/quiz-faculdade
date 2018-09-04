@@ -5,6 +5,7 @@
   font-size: 13pt;
 }
 .logo img {
+  display: inherit;
   width: 142px;
 }
 #links > li{
@@ -78,7 +79,7 @@
 }
 
 .featured > section > p {
-  font-size: 18pt;
+  font-size: 16.5pt;
 }
 
 #themes {
@@ -89,22 +90,30 @@
 }
 
 .category-card {
-  width: 210px;
-  text-align: center;
+  width: 250px;
+  height: 350px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  padding: 20px;
+  text-align: center;
+  padding: 22px;
   border-radius: 10px;
   margin: 10px;
   margin-top: -30px;
+  background-color: #fff;
+  box-sizing: border-box;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.20);
 }
 
-.category-card > div {
-  margin-bottom: 20px;
+.category-card > div:first-child {
+  margin-top: 10px;
 }
+
+.category-card > div:last-child {
+  width: 100%;
+}
+
 
 .category-image {
   width: 96px;
@@ -117,13 +126,17 @@
 
 .category-title {
   font-weight: 700;
-  font-size: 18pt;
-  line-height: .9;
+  font-size: 19pt;
+  line-height: 1.2;
   text-transform: uppercase;
+}
+.category-level {
+	font-size: 12pt;
+	color: #666;
 }
 
 .category-amout {
-  color: #808080;
+  color: #666;
   font-size: 12pt;
   margin-left: 2px;
 }
@@ -133,9 +146,15 @@ a {
   color: #fff;
 }
 .btn {
-  padding: 10px 75px;
+  display: inline-block;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  border: 2px solid #FFFFFF99;
   border-radius: 5px;
   font-weight: 600;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-info {
@@ -145,6 +164,7 @@ a {
 .btn-primary {
   padding: 10px 50px;
   font-size: 14pt;
+  border-color: #33333333;
 }
 
 .btn-green {

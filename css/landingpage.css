@@ -20,6 +20,7 @@
 }
 #links > li > a:hover {
   color: #7a29d1;
+  transition: .35s;
 }
 .align-columns {
   display: flex;

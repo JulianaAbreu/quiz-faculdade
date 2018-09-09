@@ -79,7 +79,7 @@
 }
 
 .featured > section > p {
-  font-size: 16.5pt;
+  font-size: 14.5pt;
 }
 
 #themes {
@@ -213,4 +213,8 @@ footer {
   align-items: center;
   justify-content: space-between;
   display: flex;
+}
+
+footer span {
+  color: #888888;
 }

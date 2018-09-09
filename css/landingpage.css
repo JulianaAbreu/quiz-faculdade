@@ -16,6 +16,10 @@
   text-decoration: none;
   color: #000;
   text-transform: uppercase;
+  font-weight: 500;
+}
+#links > li > a:hover {
+  color: #7a29d1;
 }
 .align-columns {
   display: flex;
@@ -155,6 +159,11 @@ a {
   font-weight: 600;
   text-align: center;
   box-sizing: border-box;
+}
+
+.btn:hover{
+  transform: scale(1.02);
+  opacity:.9;
 }
 
 .btn-info {

@@ -159,7 +159,7 @@ a {
   font-weight: 600;
   text-align: center;
   box-sizing: border-box;
-  transition: .5s;
+  transition: .3s;
 }
 
 .btn:hover{

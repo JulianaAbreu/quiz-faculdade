@@ -1,0 +1,81 @@
+/* ---------- Movies ---------- */
+.movies header {
+    background: url("../img/header-banner.png"), #89DAA9;
+    background-blend-mode: lighten;
+    background-position: center 50%; /* --------------- */
+    background-repeat: repeat-x;
+}
+
+.movies .quiz-question > h2 {
+    color: #307A50;
+}
+
+.movies .quiz-question > div {
+    color: #367C39;
+}
+
+.movies .quiz-question .active {
+    background:#89DAA9;
+}
+
+.movies .option-letter {
+    background: #B4DF80;
+}
+
+/* ---------- Séries ---------- */
+.series header {
+    background: url("../img/header-banner.png"), #F5C31C;
+    background-blend-mode: lighten;
+    background-position: center 50%; /* --------------- */
+    background-repeat: repeat-x;
+}
+
+.series .quiz-question > h2 {
+    color: #C69A04;
+}
+
+.series .quiz-question > div {
+    color: #FF7575;
+}
+
+.series .quiz-question .active,
+.series .option-letter {
+    background:#FCDD74;
+    color: #C69A04;
+}
+
+/* ---------- Animes ---------- */
+.animes header {
+    background: url("../img/header-banner.png"), #F36164;
+    background-blend-mode: lighten;
+    background-position: center 50%; /* --------------- */
+    background-repeat: repeat-x;
+}
+
+.animes .quiz-question > h2,
+.animes .quiz-question > div {
+    color: #9C2E38;
+}
+
+.animes .quiz-question .active,
+.animes .option-letter {
+    background: #F36164;
+}
+
+/* ---------- Musics ---------- */
+.musics header {
+    background: url("../img/header-banner.png"), #6A55CC;
+    background-blend-mode: lighten;
+    background-position: center 50%; /* --------------- */
+    background-repeat: repeat-x;
+}
+
+.musics .quiz-question > h2,
+.musics .quiz-question > div {
+    color: #2B176C;
+}
+
+.musics .quiz-question .active,
+.musics .option-letter {
+    background: #6A55CC;
+}

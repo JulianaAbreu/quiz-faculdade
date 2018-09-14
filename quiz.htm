@@ -8,12 +8,13 @@
 	<meta name="theme-color" content="#560C98">
 	<link rel="icon" href="./img/favicon.png">
 	<link rel="stylesheet" type="text/css" href="./css/quiz-page.css">
+	<link rel="stylesheet" type="text/css" href="./css/quiz-themes.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700">
 </head>
 <body>
 	<aside>
 		<div class="sidebar-thumbnail scale-hover">
-			<img src="./img/stock/category-perfil/movies-category.png" class="category-thumb">
+			<img src="./img/stock/category-perfil/music-category.png" class="category-thumb">
 		</div>
 		<div class="sidebar-menu">
 			<a class="sidebar-btn">
@@ -40,27 +41,29 @@
 			</a>
 		</div>
 	</aside>
-	<main>
+	<main class="musics">
 		<header>
 			<div class="category-title">
-				<img src="./img/icons/quiz-movie.svg">
-				<h1>Filmes</h1>
+				<img src="./img/icons/quiz-music.svg">
+				<h1>Músicas</h1>
 			</div>
 			
-			<div class="category-level scale-hover">
+			<div class="category-level">
 				<div id="level-stars">
 					<img src="./img/icons/star-level.svg">
+					<img src="./img/icons/star-level.svg">
+					<img src="./img/icons/star-level.svg">
 				</div>
-				<p><strong>Nível</strong><br>Fácil</p>
+				<p><strong>Nível</strong><br>Difícil</p>
 			</div>
-			<div class="category-questnum scale-hover">
-				4 <strong>10</strong>
+			<div class="category-questnum">
+				3 <strong>8</strong>
 			</div>
 		</header>
 
 		<section class="question-wrapper">
 			<div>
-				<img src="./img/icons/nav-arrow.svg" class="nav-arrow arrow-left" id="narrow-back">
+				<img src="./img/icons/nav-arrow-left.svg" class="nav-arrow" id="narrow-back">
 				<div style="overflow: hidden; padding: 20px">
 					<div class="quiz-question">
 						<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?</h2>
@@ -72,7 +75,7 @@
 							<span class="option-letter">b</span>
 							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 						</div>
-						<div class="option03" id="option03">
+						<div class="option03 active" id="option03">
 							<span class="option-letter">c</span>
 							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 						</div>
@@ -82,7 +85,7 @@
 						</div>
 					</div>
 				</div>
-				<img src="./img/icons/nav-arrow.svg" class="nav-arrow disabled" id="narrow-next">
+				<img src="./img/icons/nav-arrow-right.svg" class="nav-arrow disabled" id="narrow-next">
 			</div>
 		</section>
 	</main>

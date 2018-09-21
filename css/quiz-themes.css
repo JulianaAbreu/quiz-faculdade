@@ -1,3 +1,21 @@
+/* ---------- Default ---------- */
+.default header {
+    background: url("../img/header-banner.png"), #BBB;
+    background-blend-mode: lighten;
+    background-position: center 50%; /* --------------- */
+    background-repeat: repeat-x;
+}
+
+.default .quiz-question > h2,
+.default .quiz-question > div,
+.default .category-title > *,
+.default #level-stars,
+.default #level-text > span,
+.default .category-questnum > strong {
+    color: transparent;
+    background: #e4e4e4;
+}
+
 /* ---------- Movies ---------- */
 .movies header {
     background: url("../img/header-banner.png"), #89DAA9;
@@ -30,12 +48,9 @@
     background-repeat: repeat-x;
 }
 
-.series .quiz-question > h2 {
-    color: #C69A04;
-}
-
+.series .quiz-question > h2,
 .series .quiz-question > div {
-    color: #FF7575;
+    color: #C69A04;
 }
 
 .series .quiz-question .active,

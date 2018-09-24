@@ -112,7 +112,7 @@
 			}
 		}
 
-		setCategoryName = () => {
+		setCategoryContent = () => {
 			let level = 0;
 			switch (category) {
 				case "movies":
@@ -158,7 +158,7 @@
 		} else {
 			const contentMain = document.getElementById('content-main');
 			contentMain.setAttribute('class', `${category}`);
-			setCategoryName(category);
+			setCategoryContent(category);
 		}
 
 		/* =================================== */

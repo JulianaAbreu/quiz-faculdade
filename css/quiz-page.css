@@ -84,7 +84,7 @@ aside {
     opacity: 0;
     color: #663366;
     border-radius: 0 5px 5px 0;
-    transition: all 250ms ease-in-out;
+    transition: all 300ms ease-in-out;
 }
 
 .sidebar-btn img {
@@ -198,6 +198,7 @@ header {
 }
 .disabled {
     opacity: .5;
+    cursor: not-allowed;
 }
 
 @keyframes btn-question {
@@ -214,6 +215,7 @@ header {
     margin-bottom: 40px;
     font-size: 1.27rem;
     line-height: 1.2;
+    width: 570px;
 }
 .quiz-question > div {
     background: #FFF;

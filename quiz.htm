@@ -56,7 +56,7 @@
 				</p>
 			</div>
 			<div class="category-questnum">
-				00 <strong>00</strong>
+				<span id="current-question">00</span> <strong>00</strong>
 			</div>
 		</header>
 
@@ -66,54 +66,29 @@
 				<div style="overflow: hidden; padding: 20px">
 					<div class="quiz-question">
 						<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?</h2>
-						<div class="option01" id="option01">
+						<div class="question-option">
 							<span class="option-letter">a</span>
 							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 						</div>
-						<div class="option02" id="option02">
+						<div class="question-option">
 							<span class="option-letter">b</span>
 							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 						</div>
-						<div class="option03" id="option03">
+						<div class="question-option">
 							<span class="option-letter">c</span>
 							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 						</div>
-						<div class="option04" id="option04">
+						<div class="question-option">
 							<span class="option-letter">d</span>
 							<span class="option-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 						</div>
 					</div>
 				</div>
-				<img src="./img/icons/nav-arrow-right.svg" class="nav-arrow disabled" id="narrow-next">
+				<img src="./img/icons/nav-arrow-right.svg" class="nav-arrow" id="narrow-next">
 			</div>
 		</section>
 	</main>
-	<script>
-		// Script APENAS para fins de teste
-
-		let questionArea = document.querySelector(".quiz-question");
-		let classes = questionArea.className;
-		document.querySelector(".nav-arrow").addEventListener("click", () => {
-			questionArea.className += " changeIn changeReverse";
-			setTimeout(() => {
-				questionArea.className = classes;
-				questionArea.className += " changeOut changeReverse";
-				setTimeout(() => {
-					questionArea.className = classes;
-				}, 250);
-			}, 250)
-		})
-
-		document.querySelector("#narrow-next").addEventListener("click", () => {
-			questionArea.className += " changeOut";
-			setTimeout(() => {
-				questionArea.className = classes;
-				questionArea.className += " changeIn";
-				setTimeout(() => {
-					questionArea.className = classes;
-				}, 250);
-			}, 250)
-		});
-	</script>
+	<script src="./js/quiz-questions.js"></script>
+	<script src="./js/main.js"></script>
 </body>
 </html>

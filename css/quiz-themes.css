@@ -11,7 +11,9 @@
 .default .category-title > *,
 .default #level-stars,
 .default #level-text > span,
-.default .category-questnum > strong {
+.default .category-questnum > strong,
+.default .question-feedback > p,
+.default .question-feedback .user-answer {
     color: transparent;
     background: #e4e4e4;
 }
@@ -28,11 +30,14 @@
     color: #307A50;
 }
 
-.movies .quiz-question > div {
+.movies .quiz-question > div,
+.movies .question-feedback .user-answer,
+.movies .question-feedback > p {
     color: #367C39;
 }
 
-.movies .quiz-question .active {
+.movies .quiz-question .active,
+.movies .question-feedback .user-answer {
     background:#89DAA9;
 }
 
@@ -49,12 +54,14 @@
 }
 
 .series .quiz-question > h2,
-.series .quiz-question > div {
+.series .quiz-question > div,
+.series .question-feedback > p {
     color: #C69A04;
 }
 
 .series .quiz-question .active,
-.series .option-letter {
+.series .option-letter,
+.series .question-feedback .user-answer {
     background:#FCDD74;
     color: #C69A04;
 }
@@ -68,12 +75,15 @@
 }
 
 .animes .quiz-question > h2,
-.animes .quiz-question > div {
+.animes .quiz-question > div,
+.animes .question-feedback .user-answer,
+.animes .question-feedback > p {
     color: #9C2E38;
 }
 
 .animes .quiz-question .active,
-.animes .option-letter {
+.animes .option-letter,
+.animes .question-feedback .user-answer {
     background: #F36164;
 }
 
@@ -86,11 +96,14 @@
 }
 
 .musics .quiz-question > h2,
-.musics .quiz-question > div {
+.musics .quiz-question > div,
+.musics .question-feedback .user-answer,
+.musics .question-feedback > p {
     color: #2B176C;
 }
 
 .musics .quiz-question .active,
-.musics .option-letter {
+.musics .option-letter,
+.musics .question-feedback .user-answer {
     background: #6A55CC;
 }

@@ -25,7 +25,7 @@ function sortArrIndex (array) {
         if(!newArr.includes(index)) newArr.push(index);
     }
     return newArr;
-} 
+}
 
 function getQuestions (category){
     switch (category){
@@ -39,6 +39,64 @@ function getQuestions (category){
             return musicsCategory;
     }
 }
+
+function redirectToInitialPage() {
+    alert('Para responder as questões, é preciso escolher uma categoria!');
+    window.location.replace("./index.htm");
+		}
+
+ 		if (search === "") {
+			window.onload = redirectToInitialPage;
+		} else {
+			const contentMain = document.getElementById('content-main');
+			contentMain.setAttribute('class', `${category}`);
+      setCategoryContent(category);
+		}
+ 		/* =================================== */
+
+    function addStarLevel(level){
+    			for (let i = 1; i <= level; i++) {
+    				const img = document.createElement("img");
+    				img.src = "./img/icons/star-level.svg";
+    				const src = document.getElementById('level-stars');
+    				src.appendChild(img);
+    			}
+    		}
+     function setCategoryContent(){
+    			let level = 0;
+    			switch (category) {
+    				case "movies":
+    					level = 1;
+    					document.getElementById("title").innerHTML = "Filmes";
+    					document.getElementById("ic-category").src = "./img/icons/quiz-movie.svg";
+    					document.getElementById("level-text").innerHTML = "Fácil"
+    					addStarLevel(level);
+    					break;
+    				case "series":
+    					level = 2;
+    					document.getElementById("title").innerHTML = "Séries";
+    					document.getElementById("ic-category").src = "./img/icons/quiz-serie.svg";
+    					document.getElementById("level-text").innerHTML = "Médio"
+    					addStarLevel(level);
+    					break;
+    				case "animes":
+    					level = 2;
+    					document.getElementById("title").innerHTML = "Animes";
+    					document.getElementById("ic-category").src = "./img/icons/quiz-anime.svg";
+    					document.getElementById("level-text").innerHTML = "Médio"
+    					addStarLevel(level);
+    					break;
+    				case "musics":
+    					level = 3;
+    					document.getElementById("title").innerHTML = "Músicas";
+    					document.getElementById("ic-category").src = "./img/icons/quiz-music.svg";
+    					document.getElementById("level-text").innerHTML = "Difícil"
+    					addStarLevel(level);
+    					break;
+    				default:
+    					category;
+    			}
+    		}
 
 function renderQuestionText (index) {
     const quest = questions[order[index]];
@@ -93,7 +151,7 @@ function changeQuestion(forward){
     // Increase or Decrease currentQuestion
     // If not succeed, stop the function
     if(!incrementQuestionCounter(forward ? +1 : -1)) return;
-    
+
     // Generate an array with classes in order to be added
     let animationClass;
     if(forward) animationClass = ["changeOut", "changeIn"];
@@ -134,7 +192,11 @@ function isAnswered(quest){
 function init(){
     // Show Question & Answers on screen
     renderQuestionText(currentQuestion);
-    
+
+    // Change question questAmount
+    const questAmount = document.querySelector(".category-questnum > strong");
+    questAmount.textContent = (questions.length).toString().padStart('2', 0);
+
     // Reset user answers' array
     user.answers.length = questions.length;
     user.answers.fill(undefined);

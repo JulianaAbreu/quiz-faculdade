@@ -119,7 +119,8 @@ header {
 .category-title {
     display: flex;
     align-items: center;
-    flex-basis: 80%;
+    flex-basis: 50%;
+    flex-grow: 10;
 }
 .category-title h1 {
     margin-left: 15px;
@@ -135,6 +136,7 @@ header {
     align-items: center;
     cursor: default;
     margin-bottom: 10px; /* ----------- */
+    flex-grow: 2;
 }
 .category-level img {
     display: inline-block;
@@ -155,16 +157,20 @@ header {
 }
 
 .category-questnum {
+    display: flex;
     font-size: 2.3rem;
     letter-spacing: -1px;
     margin-bottom: 10px; /* ----------- */
 }
+.category-questnum strong {
+    display: inline-flex;
+    align-items: center;
+}
 .category-questnum strong:before { /* ----------------- */
     content: " ";
     border: 1px solid #FFF;
-    font-size: 1rem;
-    vertical-align: middle;
-    margin-right: 7px;
+    margin: 10px;
+    height: 40%;
 }
 
 .question-wrapper {
@@ -177,6 +183,11 @@ header {
     display: flex;
     align-items: center;
     max-width: 850px;
+}
+
+.question-wrapper > div > div {
+    overflow: hidden;
+    padding: 20px;
 }
 
 @keyframes navigation-arrow {
@@ -199,6 +210,9 @@ header {
 .disabled {
     opacity: .5;
     cursor: not-allowed;
+}
+.question-changer {
+    display: none;
 }
 
 @keyframes btn-question {

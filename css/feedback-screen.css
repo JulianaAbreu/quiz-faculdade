@@ -4,9 +4,8 @@
     padding: 0 10%;
     box-sizing: border-box;
     overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* display: inline-block; */
+    display: none;
 }
 .user-feedback {
     display: flex;
@@ -46,7 +45,8 @@
 }
 .hits-feedback strong,
 .hits-feedback span {
-    color: #25A14C
+    /* color: #25A14C */
+    color: #AB16CE;
 }
 .hits-feedback strong {
     font-size: 45px;
@@ -59,6 +59,9 @@
     color: #777;
 }
 
+.questions-answers {
+    margin-bottom: 50px;
+}
 .questions-answers h2 {
     display: inline-block;
     min-width: 180px;
@@ -68,7 +71,7 @@
     border-bottom: 3px solid #AAA;
     margin-bottom: 50px;
 }
-.questions-answers article{
+.questions-answers article {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
@@ -102,7 +105,8 @@
     box-sizing: border-box;
     border-radius: 4px;
     box-shadow: 0px 0px 10px 0px #BBB;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 .question-feedback .user-wrong-answer {
     color: #444;
@@ -112,6 +116,7 @@
 .user-wrong-answer .option-letter,
 .user-answer .option-letter {
     background: #FFF;
+    min-width: 25px;
 }
 .user-wrong-answer .option-letter {
     color: #444;
@@ -137,6 +142,13 @@
 .user-answer-wrapper > div {
     padding: 5px 0 0;
     width: 80%;
+}
+.user-answer > span:last-child,
+.user-wrong-answer > span:last-child,
+.wrong-answer > div > span:last-child {
+    height: 18px;
+    overflow-y: hidden;
+    display: inline-block;
 }
 
 .user-answer-content {
@@ -178,20 +190,11 @@
     font-size: 12px;
     font-weight: 700;
     color: #444;
+    display: flex;
+    align-items: center;
 }
 .wrong-answer .option-letter {
     background: #CCC;
     color: #444;
-}
-
-.limit-user-answer {
-    overflow: hidden;
-}
-
-.user-answer,
-.user-answer > span,
-.wrong-answer > div,
-.limit-user-answer,
-.wrong-answer span {
-    white-space: nowrap;
+    min-width: 25px;
 }

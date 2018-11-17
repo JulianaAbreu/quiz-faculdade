@@ -10,8 +10,8 @@ const questionElements = {
     text: document.querySelector(".quiz-question h2"),
     alternatives: document.querySelectorAll('.question-option')
 }
-const nextArrow = document.querySelector("#narrow-next");
-const prevArrow = document.querySelector("#narrow-back");
+const nextArrow = document.querySelectorAll(".narrow-next");
+const prevArrow = document.querySelectorAll(".narrow-back");
 
 const user = {
     answers: []
@@ -100,7 +100,6 @@ function setCategoryContent() {
 
 function renderQuestionText(index) {
     const quest = questions[order[index]];
-    console.log(quest)
     questionElements.text.textContent = quest.question;
     questionElements.alternatives.forEach((alt, i) => {
         alt.children[1].textContent = quest.answers[i];
@@ -112,7 +111,6 @@ function renderQuestionText(index) {
                 registAnswer(undefined)
             } else {
                 registAnswer(i);
-                compareAnswers(user.answers, quest);
                 alt.classList.add('active');
             }
         }
@@ -124,24 +122,28 @@ function incrementQuestionCounter(times) {
     if ((nextQuestion += times) < questions.length) {
         if ((nextQuestion += times) >= -1) {
             currentQuestion += times;
-            prevArrow.classList.remove('disabled');
-            nextArrow.classList.remove('disabled');
+            prevArrow.forEach(item => item.classList.remove('disabled'));
+            nextArrow.forEach(item => item.classList.remove('disabled'));
             return true;
         }
         else {
-            prevArrow.classList.add('disabled');
+            prevArrow.forEach(item => item.classList.add('disabled'));
             return false;
         }
     } else {
-        compareAnswers(user.answers);
-        nextArrow.classList.add('disabled');
+        nextArrow.forEach(item => item.classList.add('disabled'));
+        const finish = confirm("Deseja finalizar o quiz e ver suas respostas?")
+        if (finish) {
+            seeRightAnswers();
+            compareAnswers()
+        }
         return false;
     }
 }
 
 function renderQuestion(quest) {
-    const questNumber = document.querySelector("#current-question");
-    questNumber.textContent = (quest + 1).toString().padStart('2', 0);
+    const questNumber = document.querySelectorAll(".current-question");
+    questNumber.forEach(item => item.textContent = (quest + 1).toString().padStart('2', 0))
     location.hash = `#${quest.toString().padStart('2', 0)}`;
     renderQuestionText(quest);
     if (isAnswered(quest)) {
@@ -166,7 +168,7 @@ function changeQuestion(forward) {
     })
 
     // Disable next navigation button
-    if (forward && !isAnswered(currentQuestion)) nextArrow.classList.add('disabled');
+    if (forward && !isAnswered(currentQuestion)) nextArrow.forEach(item => item.classList.add('disabled'));
 
     // Animate question area & change question
     let questionArea = document.querySelector(".quiz-question");
@@ -185,11 +187,17 @@ function changeQuestion(forward) {
 
 function registAnswer(index) {
     user.answers[currentQuestion] = index;
-    nextArrow.classList.remove('disabled');
+    nextArrow.forEach(item => item.classList.remove('disabled'));
 }
 
 function isAnswered(quest) {
     return user.answers[quest] != undefined;
+}
+
+function seeRightAnswers() {
+    location.hash = "finished"
+    document.querySelector(".question-wrapper").style.display = "none";
+    document.querySelector(".feedback-wrapper").style.display = "inline-block";
 }
 
 function init() {
@@ -197,20 +205,24 @@ function init() {
     renderQuestionText(currentQuestion);
 
     // Change question questAmount
-    const questAmount = document.querySelector(".category-questnum > strong");
-    questAmount.textContent = (questions.length).toString().padStart('2', 0);
+    const questAmount = document.querySelectorAll(".category-questnum > strong");
+    questAmount.forEach(item => item.textContent = (questions.length).toString().padStart('2', 0));
+
+    // Change current question indicator
+    const questNumber = document.querySelectorAll(".current-question");
+    questNumber.forEach(item => item.textContent = (currentQuestion + 1).toString().padStart('2', 0))
 
     // Reset user answers' array
     user.answers.length = questions.length;
     user.answers.fill(undefined);
 
     // Disable navigation buttons
-    nextArrow.classList.add('disabled');
-    if (currentQuestion === 0) prevArrow.classList.add('disabled');
+    nextArrow.forEach(item => item.classList.add('disabled'));
+    if (currentQuestion === 0) prevArrow.forEach(item => item.classList.add('disabled'));
 
     // Add events to navigation buttons
-    prevArrow.onclick = () => changeQuestion(false);
-    nextArrow.onclick = (evt) => {
+    prevArrow.forEach(item => item.onclick = () => changeQuestion(false));
+    nextArrow.forEach(item => item.onclick = (evt) => {
 
         // Only allow change question if one answer was selected
         if (isAnswered(currentQuestion)) {
@@ -220,50 +232,84 @@ function init() {
             evt.target.classList.add('disabled');
             alert("Você precisa selecionar uma alternativa antes de continuar");
         }
-    }
+    });
 }
 
 init();
 
 // compare questions
 
-function compareAnswers(answers, quest) {  
-    const questionsDrawn = [];
+function listDrawnQuestions() {
+    const drawnQuestions = [];
 
     order.map((questionOrder) => {
         questions.map((question) => {
             if (questionOrder === question.id) {
-                questionsDrawn.push(question)
+                drawnQuestions.push(question)
             }
         })
-    })    
+    })
 
+    return drawnQuestions;
+}
+
+function listHits() {
     const hitList = []
-    answers.map((marked, markedIndex) => {
-        questionsDrawn.map((question, index) => {
-            if(marked === question.rightAnswer && markedIndex === index) {
+    const answersUser = user.answers;
+    const drawnQuestions = listDrawnQuestions();
+    answersUser.map((marked, markedIndex) => {
+        drawnQuestions.map((question, index) => {
+            if (marked === question.rightAnswer && markedIndex === index) {
                 hitList.push(question)
             }
         })
     });
 
-
-    listAmountHits(hitList);
-    calculateHitPercent(hitList);
-    listSuccessfulQuestions(hitList)
+    return hitList;
 }
 
-function listAmountHits(answers) {
-    console.log('numero de acertos:', answers.length)
-    return answers.length;
+function listWrongQuestions() {
+    const answersUser = user.answers;
+    const wrongQuestions = []
+    const drawnQuestions = listDrawnQuestions();
+
+    answersUser.map((marked, markedIndex) => {
+        drawnQuestions.map((question, index) => {
+            if (markedIndex === index && marked !== question.rightAnswer) {
+                wrongQuestions.push(question)
+            }
+        })
+    });
+    return wrongQuestions;
 }
 
-function calculateHitPercent(answers) {
-    const percent = `${(answers.length / questions.length) * 100}%`;
-    console.log('porcentagem: ',percent)
+function listAmountHits() {
+    const hitList = listHits();
+    return hitList.length;
 }
 
-function listSuccessfulQuestions(hitList) {
-    // coloca no html as questoes certas
-    console.log('Questões certas',hitList)
+function calculateHitPercent() {
+    const hitList = listHits();
+    const percent = `${(hitList.length / questions.length) * 100}`;
+    return percent;
 }
+
+function listSuccessfulQuestions() {
+    const hitList = listHits();
+}
+
+function compareAnswers() {
+    listWrongQuestions();
+    const hits = listHits();
+    const amountHits = listAmountHits();
+    const percent = calculateHitPercent();
+    listDrawnQuestions();
+
+    const hitList = {
+        amount: amountHits,
+        percent: percent,
+        answers: hits
+    }
+}
+
+

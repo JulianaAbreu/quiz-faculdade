@@ -247,6 +247,7 @@ function compareAnswers(answers, quest) {
         })
     });
 
+
     listAmountHits(hitList);
     calculateHitPercent(hitList);
     listSuccessfulQuestions(hitList)

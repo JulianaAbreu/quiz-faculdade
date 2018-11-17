@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/quiz-page.css">
 	<link rel="stylesheet" type="text/css" href="./css/quiz-themes.css">
 	<link rel="stylesheet" type="text/css" href="./css/feedback-screen.css">
+	<link rel="stylesheet" type="text/css" href="./css/mobile-quiz.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700">
 </head>
 <body>
@@ -48,7 +49,7 @@
 				<img id="ic-category">
 				<h1 id="title">FanQuiz</h1>
 			</div>
-
+			
 			<div class="category-level">
 				<div id="level-stars"></div>
 				<p>
@@ -56,15 +57,15 @@
 					<span id="level-text">Médio</span>
 				</p>
 			</div>
-			<div class="category-questnum">
+			<div class="category-questnum desktop">
 				<span id="current-question">00</span> <strong>00</strong>
 			</div>
 		</header>
 
-		<section class="question-wrapper" style="display: none">
+		<section class="question-wrapper">
 			<div>
-				<img src="./img/icons/nav-arrow-left.svg" class="nav-arrow" id="narrow-back">
-				<div style="overflow: hidden; padding: 20px">
+				<img src="./img/icons/nav-arrow-left.svg" class="nav-arrow desktop" id="narrow-back">
+				<div>
 					<div class="quiz-question">
 						<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?</h2>
 						<div class="question-option">
@@ -85,7 +86,14 @@
 						</div>
 					</div>
 				</div>
-				<img src="./img/icons/nav-arrow-right.svg" class="nav-arrow" id="narrow-next">
+				<img src="./img/icons/nav-arrow-right.svg" class="nav-arrow desktop" id="narrow-next">
+				<div class="question-changer">
+					<img src="img/icons/mobile-left-arrow.svg" class="nav-arrow" id="narrow-back">
+					<div class="category-questnum">
+						<span id="current-question">00</span> <strong>00</strong>
+					</div>
+					<img src="img/icons/mobile-right-arrow.svg" class="nav-arrow" id="narrow-next">
+				</div>
 			</div>
 		</section>
 
@@ -95,8 +103,8 @@
 					<img src="./img/icons/feedback-emoticons/0_disabled.png" />
 					<img src="./img/icons/feedback-emoticons/25_disabled.png" />
 					<img src="./img/icons/feedback-emoticons/50_disabled.png" />
-					<img src="./img/icons/feedback-emoticons/75_disabled.png" />
-					<img src="./img/icons/feedback-emoticons/100.png" class="emotion-active"/>
+					<img src="./img/icons/feedback-emoticons/75.png" class="emotion-active"/>
+					<img src="./img/icons/feedback-emoticons/100_disabled.png"/>
 				</div>
 				<hr>
 				<div class="hits-feedback">
@@ -116,48 +124,9 @@
 						<div class="user-answer-wrapper">
 							<div>
 								<div class="user-answer-feedback">
-									<div class="user-answer">
-										<div class="limit-user-answer">
-											<span class="option-letter">c</span>
-											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-										</div>
-									</div>
-									<div class="user-answer-content">
-										<div class="right-answer">
-											<img src="./img/icons/right-answer.svg" />
-											<div>
-												<span>Parabéns!</span>
-												<p>Você acertou essa questão!</p>
-											</div>
-										</div>
-										<div class="wrong-answer">
-											<span>Alternativa Correta:</span>
-											<div>
-												<div class="limit-user-answer">
-													<span class="option-letter">d</span>
-													<span>Lorem ipsum dolor sit amet, amet dictum tortor</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="question-feedback">
-						<p>
-							<span>01. </span>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?
-						</p>
-						<div class="user-answer-wrapper">
-							<div>
-								<div class="user-answer-feedback">
 									<div class="user-wrong-answer">
-										<div class="limit-user-answer">
-											<span class="option-letter">c</span>
-											<span>Lorem ipsum dolor sit amet</span>
-										</div>
+										<span class="option-letter">c</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 									</div>
 									<div class="user-answer-content">
 										<div class="right-answer">
@@ -171,7 +140,7 @@
 											<span>Alternativa Correta:</span>
 											<div>
 												<span class="option-letter">d</span>
-												<span>Lorem ipsum dolor sit amet</span>
+												<span>Lorem ipsum dolor sit amet, amet dictum tortor</span>
 											</div>
 										</div>
 									</div>
@@ -189,131 +158,22 @@
 							<div>
 								<div class="user-answer-feedback">
 									<div class="user-answer">
-										<div class="limit-user-answer">
-											<span class="option-letter">c</span>
-											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-										</div>
+										<span class="option-letter">c</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 									</div>
 									<div class="user-answer-content">
-										<div class="right-answer">
+										<div class="right-answer" style="display: flex">
 											<img src="./img/icons/right-answer.svg" />
 											<div>
 												<span>Parabéns!</span>
 												<p>Você acertou essa questão!</p>
 											</div>
 										</div>
-										<div class="wrong-answer">
+										<div class="wrong-answer" style="display: none">
 											<span>Alternativa Correta:</span>
 											<div>
 												<span class="option-letter">d</span>
-												<span>Lorem ipsum dolor sit amet</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="question-feedback">
-						<p>
-							<span>01. </span>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?
-						</p>
-						<div class="user-answer-wrapper">
-							<div>
-								<div class="user-answer-feedback">
-									<div class="user-answer">
-										<div class="limit-user-answer">
-											<span class="option-letter">c</span>
-											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-										</div>
-									</div>
-									<div class="user-answer-content">
-										<div class="right-answer">
-											<img src="./img/icons/right-answer.svg" />
-											<div>
-												<span>Parabéns!</span>
-												<p>Você acertou essa questão!</p>
-											</div>
-										</div>
-										<div class="wrong-answer">
-											<span>Alternativa Correta:</span>
-											<div>
-												<div class="limit-user-answer">
-													<span class="option-letter">d</span>
-													<span>Lorem ipsum dolor sit amet, amet dictum tortor</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="question-feedback">
-						<p>
-							<span>01. </span>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?
-						</p>
-						<div class="user-answer-wrapper">
-							<div>
-								<div class="user-answer-feedback">
-									<div class="user-wrong-answer">
-										<div class="limit-user-answer">
-											<span class="option-letter">c</span>
-											<span>Lorem ipsum dolor sit amet</span>
-										</div>
-									</div>
-									<div class="user-answer-content">
-										<div class="right-answer">
-											<img src="./img/icons/right-answer.svg" />
-											<div>
-												<span>Parabéns!</span>
-												<p>Você acertou essa questão!</p>
-											</div>
-										</div>
-										<div class="wrong-answer">
-											<span>Alternativa Correta:</span>
-											<div>
-												<span class="option-letter">d</span>
-												<span>Lorem ipsum dolor sit amet</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="question-feedback">
-						<p>
-							<span>01. </span>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dictum tortor. In interdum erat in leo tempus, sed bibendum risus luctus. Mauris non ante mauris donec fermentum?
-						</p>
-						<div class="user-answer-wrapper">
-							<div>
-								<div class="user-answer-feedback">
-									<div class="user-answer">
-										<div class="limit-user-answer">
-											<span class="option-letter">c</span>
-											<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-										</div>
-									</div>
-									<div class="user-answer-content">
-										<div class="right-answer">
-											<img src="./img/icons/right-answer.svg" />
-											<div>
-												<span>Parabéns!</span>
-												<p>Você acertou essa questão!</p>
-											</div>
-										</div>
-										<div class="wrong-answer">
-											<span>Alternativa Correta:</span>
-											<div>
-												<span class="option-letter">d</span>
-												<span>Lorem ipsum dolor sit amet</span>
+												<span>Lorem ipsum dolor sit amet, amet dictum tortor</span>
 											</div>
 										</div>
 									</div>

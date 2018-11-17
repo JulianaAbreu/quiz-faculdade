@@ -10,8 +10,8 @@ const questionElements = {
     text: document.querySelector(".quiz-question h2"),
     alternatives: document.querySelectorAll('.question-option')
 }
-const nextArrow = document.querySelector("#narrow-next");
-const prevArrow = document.querySelector("#narrow-back");
+const nextArrow = document.querySelectorAll(".narrow-next");
+const prevArrow = document.querySelectorAll(".narrow-back");
 
 const user = {
     answers: []
@@ -122,23 +122,27 @@ function incrementQuestionCounter(times){
     if((nextQuestion += times) < questions.length) {
         if((nextQuestion += times) >= -1){
             currentQuestion += times;
-            prevArrow.classList.remove('disabled');
-            nextArrow.classList.remove('disabled');
+            prevArrow.forEach(item => item.classList.remove('disabled'));
+            nextArrow.forEach(item => item.classList.remove('disabled'));
             return true;
         }
         else {
-            prevArrow.classList.add('disabled');
+            prevArrow.forEach(item => item.classList.add('disabled'));
             return false;
         }
     } else {
-        nextArrow.classList.add('disabled');
+        nextArrow.forEach(item => item.classList.add('disabled'));
+        const finish = confirm("Deseja finalizar o quiz e ver suas respostas?")
+        if(finish){
+            seeRightAnswers();
+        }
         return false;
     }
 }
 
 function renderQuestion(quest){
-    const questNumber = document.querySelector("#current-question");
-    questNumber.textContent = (quest + 1).toString().padStart('2', 0);
+    const questNumber = document.querySelectorAll(".current-question");
+    questNumber.forEach(item => item.textContent = (quest + 1).toString().padStart('2', 0))
     location.hash = `#${quest.toString().padStart('2', 0)}`;
     renderQuestionText(quest);
     if(isAnswered(quest)){
@@ -163,7 +167,7 @@ function changeQuestion(forward){
     })
 
     // Disable next navigation button
-    if(forward && !isAnswered(currentQuestion)) nextArrow.classList.add('disabled');
+    if(forward && !isAnswered(currentQuestion)) nextArrow.forEach(item => item.classList.add('disabled'));
 
     // Animate question area & change question
     let questionArea = document.querySelector(".quiz-question");
@@ -182,11 +186,17 @@ function changeQuestion(forward){
 
 function registAnswer(index){
     user.answers[currentQuestion] = index;
-    nextArrow.classList.remove('disabled');
+    nextArrow.forEach(item => item.classList.remove('disabled'));
 }
 
 function isAnswered(quest){
     return user.answers[quest] != undefined;
+}
+
+function seeRightAnswers(){
+    location.hash = "finished"
+    document.querySelector(".question-wrapper").style.display = "none";
+    document.querySelector(".feedback-wrapper").style.display = "inline-block";
 }
 
 function init(){
@@ -194,20 +204,24 @@ function init(){
     renderQuestionText(currentQuestion);
 
     // Change question questAmount
-    const questAmount = document.querySelector(".category-questnum > strong");
-    questAmount.textContent = (questions.length).toString().padStart('2', 0);
+    const questAmount = document.querySelectorAll(".category-questnum > strong");
+    questAmount.forEach(item => item.textContent = (questions.length).toString().padStart('2', 0));
+
+    // Change current question indicator
+    const questNumber = document.querySelectorAll(".current-question");
+    questNumber.forEach(item => item.textContent = (currentQuestion + 1).toString().padStart('2', 0))
 
     // Reset user answers' array
     user.answers.length = questions.length;
     user.answers.fill(undefined);
 
     // Disable navigation buttons
-    nextArrow.classList.add('disabled');
-    if(currentQuestion === 0) prevArrow.classList.add('disabled');
+    nextArrow.forEach(item => item.classList.add('disabled'));
+    if(currentQuestion === 0) prevArrow.forEach(item => item.classList.add('disabled'));
 
     // Add events to navigation buttons
-    prevArrow.onclick = () => changeQuestion(false);
-    nextArrow.onclick = (evt) => {
+    prevArrow.forEach(item => item.onclick = () => changeQuestion(false));
+    nextArrow.forEach(item => item.onclick = (evt) => {
 
         // Only allow change question if one answer was selected
         if(isAnswered(currentQuestion)){
@@ -217,7 +231,7 @@ function init(){
             evt.target.classList.add('disabled');
             alert("Você precisa selecionar uma alternativa antes de continuar");
         }
-    }
+    });
 }
 
 init();

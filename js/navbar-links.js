@@ -23,4 +23,7 @@ document.querySelector("#return-home").onclick = returnHomeScreen;
 document.querySelector("#exit-quiz").onclick = returnHomeScreen;
 document.querySelector("#reload-quiz").onclick = reloadQuestions;
 document.querySelector("#about-us-info").onclick = aboutUs;
-document.querySelector("#return-question").onclick = () => changeQuestion(false);
+document.querySelector("#return-question").onclick = () => {
+    if(location.hash !== "#finished")
+        changeQuestion(false)
+}

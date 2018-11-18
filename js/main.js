@@ -135,7 +135,6 @@ function incrementQuestionCounter(times) {
         const finish = confirm("Deseja finalizar o quiz e ver suas respostas?")
         if (finish) {
             seeRightAnswers();
-            compareAnswers()
         }
         return false;
     }
@@ -195,9 +194,45 @@ function isAnswered(quest) {
 }
 
 function seeRightAnswers() {
+    const hitList = listHits();
+    const hitsAmout = listAmountHits(hitList);
+    const percent = calculateHitPercent(hitsAmout);
+
+    const cardWrapper = document.querySelector(".questions-answers > article");
+    const emoticonFeedback = document.querySelector(".emotion-feedback");
+    const feedbackData = document.querySelector(".hits-feedback");
+
     location.hash = "finished"
     document.querySelector(".question-wrapper").style.display = "none";
     document.querySelector(".feedback-wrapper").style.display = "inline-block";
+    
+    hitList.forEach((item, i) => {
+        cardWrapper.appendChild(renderUserFeedbackCard(i, item))
+    })
+    
+    if(percent === 100){
+        feedbackData.classList.add("excellent");
+        emoticonFeedback.children[4].className = "emotion-active";
+        emoticonFeedback.children[4].setAttribute("src", "./img/icons/feedback-emoticons/100.png");
+    } else if (percent >= 75){
+        feedbackData.classList.add("very-good");
+        emoticonFeedback.children[3].className = "emotion-active";
+        emoticonFeedback.children[3].setAttribute("src", "./img/icons/feedback-emoticons/75.png");
+    } else if (percent >= 50){
+        feedbackData.classList.add("good");
+        emoticonFeedback.children[2].className = "emotion-active";
+        emoticonFeedback.children[2].setAttribute("src", "./img/icons/feedback-emoticons/50.png");
+    } else if (percent >= 25){
+        feedbackData.classList.add("bad");
+        emoticonFeedback.children[1].className = "emotion-active";
+        emoticonFeedback.children[1].setAttribute("src", "./img/icons/feedback-emoticons/25.png");
+    } else {
+        feedbackData.classList.add("very-bad");
+        emoticonFeedback.children[0].className = "emotion-active";
+        emoticonFeedback.children[0].setAttribute("src", "./img/icons/feedback-emoticons/0.png");
+    }
+    feedbackData.children[0].innerHTML = Math.ceil(percent) + "%";
+    feedbackData.children[2].innerHTML = `${hitsAmout} de ${questions.length} questões`;
 }
 
 function init() {
@@ -237,79 +272,117 @@ function init() {
 
 init();
 
-// compare questions
+class QuestionResponse {
+    constructor(text, answers, userAnswer, rightAnswer){
+        this.question = text;
+        this.userAnswer = {
+            index: userAnswer,
+            text: answers[userAnswer]
+        };
 
-function listDrawnQuestions() {
-    const drawnQuestions = [];
-
-    order.map((questionOrder) => {
-        questions.map((question) => {
-            if (questionOrder === question.id) {
-                drawnQuestions.push(question)
+        if(rightAnswer !== userAnswer){
+            this.rightAnswer = {
+                index: rightAnswer,
+                text: answers[rightAnswer]
             }
-        })
-    })
-
-    return drawnQuestions;
-}
-
-function listHits() {
-    const hitList = []
-    const answersUser = user.answers;
-    const drawnQuestions = listDrawnQuestions();
-    answersUser.map((marked, markedIndex) => {
-        drawnQuestions.map((question, index) => {
-            if (marked === question.rightAnswer && markedIndex === index) {
-                hitList.push(question)
-            }
-        })
-    });
-
-    return hitList;
-}
-
-function listWrongQuestions() {
-    const answersUser = user.answers;
-    const wrongQuestions = []
-    const drawnQuestions = listDrawnQuestions();
-
-    answersUser.map((marked, markedIndex) => {
-        drawnQuestions.map((question, index) => {
-            if (markedIndex === index && marked !== question.rightAnswer) {
-                wrongQuestions.push(question)
-            }
-        })
-    });
-    return wrongQuestions;
-}
-
-function listAmountHits() {
-    const hitList = listHits();
-    return hitList.length;
-}
-
-function calculateHitPercent() {
-    const hitList = listHits();
-    const percent = `${(hitList.length / questions.length) * 100}`;
-    return percent;
-}
-
-function listSuccessfulQuestions() {
-    const hitList = listHits();
-}
-
-function compareAnswers() {
-    listWrongQuestions();
-    const hits = listHits();
-    const amountHits = listAmountHits();
-    const percent = calculateHitPercent();
-    listDrawnQuestions();
-
-    const hitList = {
-        amount: amountHits,
-        percent: percent,
-        answers: hits
+        }
     }
 }
 
+// compare questions
+function listHits(){
+    let hitList = [];
+    
+    hitList = order.map((item, index) => {
+        const userAnswer = user.answers[index];
+        const { question, answers, rightAnswer } = questions.find(quest => quest.id === item);
 
+        return new QuestionResponse(question, answers, userAnswer, rightAnswer);
+    })
+    return hitList;
+}
+
+function listAmountHits(quizFeedback) {
+    const listHits = quizFeedback;
+    const amountHits = listHits.reduce((total, item) => {
+        return !item.rightAnswer ? total + 1 : total + 0;
+    }, 0);
+    return amountHits;
+}
+
+function calculateHitPercent(hitsAmount) {
+    const amoutQuestions = questions.length;
+    const percent = hitsAmount / amoutQuestions * 100;
+    return percent;
+}
+
+function getLetter(index){
+    switch (index){
+        case 0:
+            return "a"
+        case 1:
+            return "b"
+        case 2:
+            return "c"
+        case 3:
+            return "d"
+        default:
+            return ""
+    }
+}
+
+function renderUserFeedbackCard(index, item){
+    let feedbackContent;
+    let userFeedbackClass;
+    
+    const card = document.createElement("div");
+    const userHint = document.createElement("div");
+    const questionText = document.createElement("p");
+    const questionNumber = (index + 1).toString().padStart(2, "0");
+    const { question:text, userAnswer, rightAnswer } = item;
+    
+    card.setAttribute("class", "question-feedback");
+    userHint.setAttribute("class", "user-answer-wrapper");
+    questionText.innerHTML = `<span>${questionNumber}.</span> ${text}`;
+
+
+    if(rightAnswer){
+        userFeedbackClass = "user-wrong-answer";
+        feedbackContent = (
+        `<div class="wrong-answer">
+            <span>Alternativa Correta:</span>
+            <div>
+                <span class="option-letter">${getLetter(rightAnswer.index)}</span>
+                <span>${rightAnswer.text}</span>
+            </div>
+        </div>`)
+    } 
+    else {
+        userFeedbackClass = "user-answer";
+        feedbackContent = (
+        `<div class="right-answer">
+            <img src="./img/icons/right-answer.svg" />
+            <div>
+                <span>Parabéns!</span>
+                <p>Você acertou essa questão!</p>
+            </div>
+        </div>`);
+    }
+
+    userHint.innerHTML = (
+    `<div>
+        <div class="user-answer-feedback">
+            <div class="${userFeedbackClass}">
+                <span class="option-letter">${getLetter(userAnswer.index)}</span>
+                <span>${userAnswer.text}</span>
+            </div>
+            <div class="user-answer-content">
+                ${feedbackContent}
+            </div>
+        </div>
+    </div>`);
+
+    card.appendChild(questionText);
+    card.appendChild(userHint);
+    return card;
+}

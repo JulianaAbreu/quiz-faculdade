@@ -43,11 +43,6 @@
     line-height: 1;
     text-align: center;
 }
-.hits-feedback strong,
-.hits-feedback span {
-    /* color: #25A14C */
-    color: #AB16CE;
-}
 .hits-feedback strong {
     font-size: 45px;
     font-weight: 700;
@@ -157,8 +152,7 @@
     margin: 12px 0;
 }
 .right-answer {
-    /* display: flex; */
-    display: none;
+    display: flex;
     align-items: center;
     background: #f8f8f8;
     color: #00A47A;

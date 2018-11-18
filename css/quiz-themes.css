@@ -107,3 +107,29 @@
 .musics .question-feedback .user-answer {
     background: #6A55CC;
 }
+
+/* -------------- Feedback Themes ----------------- */
+.very-bad strong,
+.very-bad span {
+    color: #D43D59;
+}
+
+.bad strong,
+.bad span {
+    color: #B58D14;
+}
+
+.good strong,
+.good span {
+    color: #1776CF;
+}
+
+.very-good strong,
+.very-good span {
+    color: #AB16CE;
+}
+
+.excellent strong,
+.excellent span {
+    color: #25A14C;
+}

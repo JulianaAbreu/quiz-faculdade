@@ -1,0 +1,47 @@
+
+function listDrawnQuestions() {
+    const drawnQuestions = [];
+
+    order.map((questionOrder) => {
+        questions.map((question) => {
+            if (questionOrder === question.id) {
+                drawnQuestions.push(question)
+            }
+        })
+    })
+
+    order.map(item => questions[item]);
+
+    return drawnQuestions;
+}
+
+function listHit() {
+    const hitList = []
+    const answersUser = user.answers;
+    const drawnQuestions = listDrawnQuestions();
+
+    answersUser.map((marked, markedIndex) => {
+        drawnQuestions.map((question, index) => {
+            if (marked === question.rightAnswer && markedIndex === index) {
+                hitList.push(question)
+            }
+        })
+    });
+
+    return hitList;
+}
+
+function listWrongQuestions() {
+    const answersUser = user.answers;
+    const wrongQuestions = []
+    const drawnQuestions = listDrawnQuestions();
+
+    answersUser.map((marked, markedIndex) => {
+        drawnQuestions.map((question, index) => {
+            if (markedIndex === index && marked !== question.rightAnswer) {
+                wrongQuestions.push(question)
+            }
+        })
+    });
+    return wrongQuestions;
+}

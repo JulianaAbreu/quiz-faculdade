@@ -24,9 +24,10 @@
     footer span {
         margin-top: 5px;
     }
+    
 }
 
-@media(max-width: 992px) {
+@media(max-width: 1024px) {
     .--hidden {
         display: none;
     }
@@ -49,30 +50,44 @@
     }
 }
 
-@media only screen and ( min-width:600px ) and ( max-width: 1280px) {
+@media only screen and ( min-width:600px ) and ( max-width: 1024px) {
+    footer span {
+        font-size: 16pt;
+    }
     .featured > section > p {
         width: 23rem;
         color: white;
-        font-size: 20pt;
+        font-size: 22pt;
     }
+    
     .btn-primary {
         font-size: 18pt;
     }
     .featured > section > h1 {
-        font-size: 30pt;
+        font-size: 50pt;
+    }
+    .category-amout, .category-level {
+        font-size: 18pt;
+    }
+    #about > p {
+        width: 100%;
+        font-size: 23pt;
     }
 } 
 
 
 @media only screen and ( min-width:600px ) and ( max-width: 768px) { 
+    .category-amout, .category-level {
+        font-size: 16.5pt;
+    }
     #about > p {
         width: 100%;
-        font-size: 19pt;
+        font-size: 21pt;
     }
     .featured > section > p {
         width: 24rem;
         color: white;
-        font-size: 18pt;
+        font-size: 20pt;
     }
     .featured > section > h1 {
         font-size: 35pt;

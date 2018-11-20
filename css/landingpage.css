@@ -5,7 +5,6 @@
   font-size: 13pt;
 }
 .logo img {
-  display: inherit;
   width: 142px;
 }
 #links > li{
@@ -91,10 +90,12 @@
 
 #themes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   justify-items: center;
-  padding-bottom: 60px;
+  padding: 0 10% 60px;
   background-image: linear-gradient(to top, #f4f4f4 30%, #fff);
+
+  /* padding-bottom: 60px; */
   
   /* alteracao - Juliana display: flexgrid;
   justify-content: center;
@@ -161,7 +162,7 @@ a {
 .btn {
   display: inline-block;
   width: 100%;
-  max-width: 200px;
+  max-width: 250px;
   padding: 10px;
   border: 2px solid #FFFFFF99;
   border-radius: 5px;
